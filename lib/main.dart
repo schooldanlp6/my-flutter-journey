@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'dart:ui';
 import 'widgets.dart';
 
 void main() => runApp(SuperAppScaffold());
@@ -10,74 +11,53 @@ class SuperAppScaffold extends StatelessWidget {
   Widget build(BuildContext context) {
     Config config = new Config();
     final body = config.getbody();
-
-    /*    return MaterialApp(
-    theme: ThemeData(
-      colorScheme: config.getColorScheme(),
-    ),
-    title: config.gettitle(),
-    home: Scaffold(
-      appBar: AppBar(
-        leading: const IconButton(
-          icon: Icon(Icons.menu),
-          tooltip: 'Navigation menu',
-          onPressed: null,
-        ),
-        title: Text(config.gettitle()),
-        actions: [
-          const IconButton(
-            icon: Icon(Icons.search),
-            tooltip: 'Search',
-            onPressed: null,
-          ),
-        ],
-      ),
-      body: ListView(
-        padding: EdgeInsets.all(16),
-        children: [
-          Image.asset(
-            'assets/images/pcb.png',
-            width: 200,
-          ),
-          const SizedBox(height: 20),
-          const Text(
-            "This is my text below the image",
-            style: TextStyle(fontSize: 20),
-          ),
-        ],
-      ),
-      //body
-    ),
-  );
-*/
     return MaterialApp(
       theme: ThemeData(
-      colorScheme: config.getColorScheme(),
-      cardTheme: CardThemeData(
-/*      elevation: BoxDecoration(
-      gradient: LinearGradient(
-            colors: [Colors.black12, Colors.red],
-            begin: Alignment.bottomCenter,
-            end: Alignment.topRight,
-      )*/
-      )
-      ),
-
-      home: Container(
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            colors: [Colors.black12, Colors.red],
-            begin: Alignment.bottomCenter,
-            end: Alignment.topRight,
+      colorScheme: config.getColorScheme(),),
+      home: Scaffold(
+        appBar: AppBar(title: Text(config.title),),
+        body: Stack(
+      children: [
+        Positioned.fill(
+          child: Image.asset(
+            'assets/wallpapers/net.png',
+            fit: BoxFit.cover,
           ),
         ),
-        child: Center(
-          child: Row(
-            
-            children: [
-              CustomCards(heading: "PCBs", imagepath: 'assets/images/pcb.png', text: "pcb = Printed Curcuit Board is a board that has tiny copper traces along its thiiggy"),
-            ],
+        Positioned.fill(
+          child: BackdropFilter(
+            filter: ImageFilter.blur(
+              sigmaX: 3,
+              sigmaY: 3,
+            ),
+            child: Container(
+              color: Colors.black.withOpacity(0.2), // optional dark overlay
+            ),
           ),
+        ), 
+        Container(
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              colors: [const Color.fromARGB(0, 0, 0, 0), const Color.fromARGB(26, 244, 67, 54)],
+              begin: Alignment.bottomCenter,
+              end: Alignment.topRight,
+            ),
+          ),
+          child: Center(
+            child: SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                CustomCards(heading: "PCBs", imagepath: 'assets/images/pcb.png', text: "pcb = Printed Curcuit Board is a board that has tiny copper traces embedded in a non conductive material like plastic"),
+                CustomCards(heading: "CPUs", imagepath: 'assets/images/cpu.png', text: "cpu = Core Processing Unit is a Chip that does general purpose computing and makes your PC work"),
+                CustomCards(heading: "GPUs", imagepath: 'assets/images/gpu.png', text: "gpu = Graphics Processing Unit is a Chip than can render heavy 3D scenes thanks to its awfully stupid and yet smart design"),
+              ],
+            ),
+          ),
+          ),
+        ),
+        ]
         ),
       ),
     );
