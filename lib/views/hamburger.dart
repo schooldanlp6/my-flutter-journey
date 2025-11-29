@@ -79,28 +79,33 @@ class DrawerOverlayState extends State<DrawerOverlay> with SingleTickerProviderS
                       ),
                     ),
                   ),
-                  // Make it loop thru more elegant later in development
-                  ListTile(
-                    title: Text("Home"),
-                    onTap: toggle,
-                  ),
-                  ListTile(
-                    title: Text("Settings"),
-                    onTap: toggle,
-                  ),
-                  ListTile(
-                    title: Text("Contact"),
-                    onTap: toggle,
-                  ),
-                  ListTile(
-                    title: Text("About"),
-                    onTap: toggle,
+                  for (int i = 0; i < Config().menuitems.length; i++)
+                    ListTile(
+                      title: ListRowHelper(index: i),
+                      onTap: config.menuactions[i],
                   ),
                 ],
               ),
             ),
           ),
         ),
+      ],
+    );
+  }
+}
+
+// ignore: must_be_immutable
+class ListRowHelper extends StatelessWidget{
+  Config config = new Config();
+  final int index;
+  ListRowHelper({super.key, required this.index});
+  
+  @override
+  Widget build(BuildContext context){
+    return Row( 
+      children: [
+        Icon(config.menuicons[index]),
+        Text(config.menuitems[index])
       ],
     );
   }

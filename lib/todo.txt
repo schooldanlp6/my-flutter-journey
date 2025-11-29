@@ -1,6 +1,8 @@
-- share card - done ? 
-- favouriting and filters (and preferably also in a saved storage) - done ? 
-- make the hamburger useful
-- make dark mode toggle
-- make the items snappy (? or not?)
-- fix open the wiki
+- share card 𐄂
+- favouriting and filters (and preferably also in a saved storage) 𐄂 
+- make the hamburger useful 𐄂
+- make dark mode toggle 𐄂
+- make the items snappy (? or not?) 𐄂
+- fix open the wiki 𐄂
+- make resource files instead of one big config.dart  𐄂
+- update ressourceful views dynamically ✓
