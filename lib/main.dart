@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'dart:ui';
-import 'widgets.dart';
-import 'hamburger.dart';
+import 'views/widgets.dart';
+import 'views/hamburger.dart';
 
 void main() => runApp(SuperAppScaffold());
 
@@ -22,7 +22,7 @@ class SuperAppScaffold extends StatelessWidget {
             icon: Icon(Icons.menu),
             tooltip: 'Navigation menu',
             onPressed: () {
-              
+
             },
           ),
           title: Text(config.title),
