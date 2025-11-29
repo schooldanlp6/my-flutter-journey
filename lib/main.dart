@@ -1,28 +1,38 @@
+//flutter packages
 import 'package:flutter/material.dart';
 import 'dart:ui';
-import 'views/widgets.dart';
+//config files
+import 'tasks/config.dart';
+//additional views
+import 'views/custom-cards.dart';
 import 'views/hamburger.dart';
 
 void main() => runApp(SuperAppScaffold());
 
 class SuperAppScaffold extends StatelessWidget {
-  const  SuperAppScaffold({super.key});
+  SuperAppScaffold({super.key});
+  final GlobalKey<DrawerOverlayState> drawerKey = GlobalKey<DrawerOverlayState>();
+
 
 
   @override
   Widget build(BuildContext context) {
     Config config = new Config();
-    final body = config.getbody();
     return MaterialApp(
       theme: ThemeData(
       colorScheme: config.getColorScheme(),),
       home: Scaffold(
         appBar: AppBar(
           leading: IconButton(
-            icon: Icon(Icons.menu),
+              icon: AnimatedIcon(
+              icon: AnimatedIcons.menu_close,
+              progress: drawerKey.currentState?.controller ?? kAlwaysDismissedAnimation,
+            ),
+
+//            icon: Icon(Icons.menu),
             tooltip: 'Navigation menu',
             onPressed: () {
-
+              drawerKey.currentState?.toggle();
             },
           ),
           title: Text(config.title),
@@ -68,6 +78,7 @@ class SuperAppScaffold extends StatelessWidget {
           ),
           ),
         ),
+          DrawerOverlay(key: drawerKey),
         ]
         ),
       ),
@@ -101,35 +112,5 @@ class SuperApp extends StatelessWidget {
   Widget build(BuildContext context) {
     // TODO: implement build
     throw UnimplementedError();
-  }
-}
-/*
-class SuperApp extends StatefulWidget{
-const SuperApp({super.key})
-
-@override
-State<StatefulWidget> createState() {
-  return Widget(
-    Column(),
-  );
-}}
-*/
-
-class Config {
-  ColorScheme colorScheme = ColorScheme.fromSeed(seedColor: Colors.redAccent);
-  String title = "SuperApp™";
-  String body = "Hello World!";
-  double headersize = 56;
-
-  ColorScheme getColorScheme() {
-    return colorScheme;
-  }
-
-  String gettitle() {
-    return title;
-  }
-
-  String getbody() {
-    return body;
   }
 }

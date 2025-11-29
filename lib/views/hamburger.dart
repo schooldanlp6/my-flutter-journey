@@ -7,29 +7,54 @@ class DrawerOverlay extends StatefulWidget {
   State<DrawerOverlay> createState() => DrawerOverlayState();
 }
 
-class DrawerOverlayState extends State<DrawerOverlay> {
+class DrawerOverlayState extends State<DrawerOverlay> with SingleTickerProviderStateMixin {
   bool _open = false;
+  late AnimationController _controller;
+
+    @override
+  void initState() {
+    super.initState();
+    _controller = AnimationController(
+      vsync: this,
+      duration: Duration(milliseconds: 250),
+    );
+  }
 
   void toggle() {
-    setState(() => _open = !_open);
+    setState(() {
+      _open = !_open;
+      _open ? _controller.forward() : _controller.reverse();
+    });
   }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  AnimationController get controller => _controller;
+
 
   @override
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        // FADE DARKEN BACKGROUND
-        AnimatedOpacity(
-          opacity: _open ? 1.0 : 0.0,
-          duration: Duration(milliseconds: 250),
-          child: GestureDetector(
-            onTap: toggle,
-            child: Container(
-              color: Colors.black54,
+        //Fix the overlay not allowing touches
+        IgnorePointer(
+          ignoring: !_open,
+          // FADE DARKEN BACKGROUND
+          child: AnimatedOpacity(
+            opacity: _open ? 1.0 : 0.0,
+            duration: Duration(milliseconds: 250),
+            child: GestureDetector(
+              onTap: toggle,
+              child: Container(
+                color: Colors.black54,
+             ),
             ),
           ),
         ),
-
         // SLIDE + FADE DRAWER
         AnimatedPositioned(
           duration: Duration(milliseconds: 250),
