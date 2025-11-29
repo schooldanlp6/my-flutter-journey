@@ -23,6 +23,7 @@ class SuperAppScaffold extends StatelessWidget {
       colorScheme: config.getColorScheme(),),
       home: Scaffold(
         appBar: AppBar(
+          backgroundColor: config.primaryaccent,
           leading: IconButton(
               icon: AnimatedIcon(
               icon: AnimatedIcons.menu_close,

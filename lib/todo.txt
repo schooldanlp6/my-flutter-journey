@@ -1,3 +1,4 @@
 - share card - done ? 
 - favouriting and filters (and preferably also in a saved storage) - done ? 
-- fix the hamburger (priority) - done ? 
+- make the hamburger useful
+- make dark mode toggle

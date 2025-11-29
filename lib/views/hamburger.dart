@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:superapp/tasks/config.dart';
 
 class DrawerOverlay extends StatefulWidget {
   const DrawerOverlay({super.key});
@@ -10,6 +11,7 @@ class DrawerOverlay extends StatefulWidget {
 class DrawerOverlayState extends State<DrawerOverlay> with SingleTickerProviderStateMixin {
   bool _open = false;
   late AnimationController _controller;
+  Config config = new Config();
 
     @override
   void initState() {
@@ -66,21 +68,33 @@ class DrawerOverlayState extends State<DrawerOverlay> with SingleTickerProviderS
             opacity: _open ? 1.0 : 0.0,
             child: Container(
               width: 250,
-              color: Colors.white,
+              color: config.primaryaccent,
               child: ListView(
                 children: [
                   DrawerHeader(
-                    child: Text(
-                      "Menu",
-                      style: TextStyle(fontSize: 24),
+                    child: Container(
+                      color: const Color.fromARGB(87, 68, 137, 255),
+                      child: Text(
+                        "Navigator™",
+                        style: TextStyle(fontSize: 24),
+                      ),
                     ),
                   ),
+                  // Make it loop thru more elegant later in development
                   ListTile(
-                    title: Text("About"),
+                    title: Text("Home"),
                     onTap: toggle,
                   ),
                   ListTile(
                     title: Text("Settings"),
+                    onTap: toggle,
+                  ),
+                  ListTile(
+                    title: Text("Contact"),
+                    onTap: toggle,
+                  ),
+                  ListTile(
+                    title: Text("About"),
                     onTap: toggle,
                   ),
                 ],
