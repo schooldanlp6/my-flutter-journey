@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'dart:ui';
 import 'widgets.dart';
+import 'hamburger.dart';
 
 void main() => runApp(SuperAppScaffold());
 
 class SuperAppScaffold extends StatelessWidget {
-  const SuperAppScaffold({super.key});
-  
-  Key? get _scaffoldKey => null;
+  const  SuperAppScaffold({super.key});
+
 
   @override
   Widget build(BuildContext context) {
@@ -17,48 +17,16 @@ class SuperAppScaffold extends StatelessWidget {
       theme: ThemeData(
       colorScheme: config.getColorScheme(),),
       home: Scaffold(
-        key: _scaffoldKey, // IMPORTANT
         appBar: AppBar(
           leading: IconButton(
             icon: Icon(Icons.menu),
             tooltip: 'Navigation menu',
             onPressed: () {
-              // Opens the drawer
-              _scaffoldKey.currentState?.openDrawer();
+              
             },
           ),
           title: Text(config.title),
         ),
-        drawer: Drawer(
-          child: ListView(
-            padding: EdgeInsets.zero,
-            children: [
-              DrawerHeader(
-                decoration: BoxDecoration(color: Colors.redAccent),
-                child: Text(
-                  "Menu",
-                  style: TextStyle(color: Colors.white, fontSize: 24),
-                ),
-              ),
-              ListTile(
-                leading: Icon(Icons.info),
-                title: Text("About"),
-                onTap: () {
-                  Navigator.pop(context); // closes drawer
-                },
-              ),
-              ListTile(
-                leading: Icon(Icons.settings),
-                title: Text("Settings"),
-                onTap: () {
-                  Navigator.pop(context);
-                },
-              ),
-            ],
-          ),
-        ),
-
-
         body: Stack(
       children: [
         Positioned.fill(
@@ -105,10 +73,6 @@ class SuperAppScaffold extends StatelessWidget {
       ),
     );
   }
-}
-
-extension on Key? {
-  get currentState => null;
 }
 
 class SuperAppBar extends StatelessWidget {

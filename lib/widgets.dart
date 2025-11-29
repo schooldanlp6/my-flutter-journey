@@ -16,44 +16,70 @@ class CustomCards extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-      return Container(
-        margin: EdgeInsets.all(10),
-        padding: EdgeInsets.all(padding),
-        constraints: BoxConstraints(
-          maxWidth: 400,
-          maxHeight: 500,
-          minHeight: 500,
-        ),
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            colors: [const Color.fromARGB(131, 172, 0, 0), const Color.fromARGB(122, 255, 0, 0)],
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter),
-          borderRadius: BorderRadius.circular(radius)
-        ),
-        child: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Text(heading, style: TextStyle(fontSize: 46, color: Colors.white),softWrap: true,overflow: TextOverflow.ellipsis,),
-          ClipRRect( 
-          borderRadius: BorderRadiusGeometry.circular(radius-padding),
-          child: Image.asset(imagepath, fit: BoxFit.cover,),
-          ),
-          Text(text, style: TextStyle(fontSize: 16, color: Colors.white),softWrap: true,),
-          ElevatedButton(onPressed: (){
-              showDialog(
-                context: context,
-                builder: (context) => AlertDialog(
-              title: Text("More ${heading} info?"),
-              content: Text("Get More information about ${heading}"),
-              actions: [
-                TextButton(onPressed: (){print("Updated View");Navigator.pop(context);}, child: Text("Open In Wiki"))
-              ],
-              ));}, child: Text("Read more!"))
+    return Container(
+      margin: EdgeInsets.all(10),
+      padding: EdgeInsets.all(padding),
+      constraints: BoxConstraints(maxWidth: 400),
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+          colors: [
+            Color.fromARGB(131, 172, 0, 0),
+            Color.fromARGB(122, 255, 0, 0)
           ],
-        )
-      )
+          begin: Alignment.topCenter,
+          end: Alignment.bottomCenter,
+        ),
+        borderRadius: BorderRadius.circular(radius),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Expanded(
+            child: SingleChildScrollView(
+              child: Column(
+                children: [
+                  Text(
+                    heading,
+                    style: TextStyle(fontSize: 46, color: Colors.white),
+                  ),
+                  ClipRRect(
+                    borderRadius:
+                        BorderRadius.circular(radius - padding),
+                    child: Image.asset(
+                      imagepath,
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                  Text(
+                    text,
+                    style: TextStyle(fontSize: 16, color: Colors.white),
+                  ),
+                ],
+              ),
+            ),
+          ),
+          ElevatedButton(
+            onPressed: () {
+              showDialog(
+                  context: context,
+                  builder: (context) => AlertDialog(
+                        title: Text("More $heading info?"),
+                        content: Text("Get More information about $heading"),
+                        actions: [
+                          TextButton(
+                            onPressed: () {
+                              print("Updated View");
+                              Navigator.pop(context);
+                            },
+                            child: Text("Open In Wiki"),
+                          )
+                        ],
+                      ));
+            },
+            child: Text("Read more!"),
+          ),
+        ],
+      ),
     );
   }
 }
