@@ -19,7 +19,7 @@ class CustomCards extends StatelessWidget {
     return Container(
       margin: EdgeInsets.all(10),
       padding: EdgeInsets.all(padding),
-      constraints: BoxConstraints(maxWidth: 400, maxHeight: 600),
+      constraints: BoxConstraints(maxWidth: 400, maxHeight: 560),
       decoration: BoxDecoration(
         gradient: LinearGradient(
           colors: [

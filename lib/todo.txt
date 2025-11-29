@@ -2,3 +2,5 @@
 - favouriting and filters (and preferably also in a saved storage) - done ? 
 - make the hamburger useful
 - make dark mode toggle
+- make the items snappy (? or not?)
+- fix open the wiki

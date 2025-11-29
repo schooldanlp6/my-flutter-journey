@@ -73,7 +73,6 @@ class DrawerOverlayState extends State<DrawerOverlay> with SingleTickerProviderS
                 children: [
                   DrawerHeader(
                     child: Container(
-                      color: const Color.fromARGB(87, 68, 137, 255),
                       child: Text(
                         "Navigator™",
                         style: TextStyle(fontSize: 24),

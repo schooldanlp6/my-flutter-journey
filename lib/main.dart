@@ -71,9 +71,15 @@ class SuperAppScaffold extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
+                Row(
+                children: [
                 CustomCards(heading: "PCBs", imagepath: 'assets/images/pcb.png', text: "pcb = Printed Curcuit Board is a board that has tiny copper traces embedded in a non conductive material like plastic"),
                 CustomCards(heading: "CPUs", imagepath: 'assets/images/cpu.png', text: "cpu = Core Processing Unit is a Chip that does general purpose computing and makes your PC work"),
+                CustomCards(heading: "RAM", imagepath: 'assets/images/ram.png', text: "ram = Random Access Memory is a core part of any computer. It enables the CPU to temporary store data which is later needed to continue process execution."),
                 CustomCards(heading: "GPUs", imagepath: 'assets/images/gpu.png', text: "gpu = Graphics Processing Unit is a Chip than can render heavy 3D scenes thanks to its awfully stupid and yet smart design"),
+                CustomCards(heading: "PSU", imagepath: 'assets/images/psu.jpg', text: "psu = power supply unit is the device of a computer that powers the whole pc like gpu cpu but also the RAM.")
+                ]
+                )
               ],
             ),
           ),
